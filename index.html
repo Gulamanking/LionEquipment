@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Crane & Trucking - Professional Heavy Equipment Services</title>
+    <title>Lion Equipment Company</title>
+    <link rel="icon" type="image/jpg" href="img/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@700;900&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { 
+            font-family: 'Prompt', 'Inter', sans-serif; 
+            font-weight: 700;
+        }
         .hero-gradient {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
         }
@@ -22,6 +29,146 @@
         .scroll-smooth {
             scroll-behavior: smooth;
         }
+        
+        /* Red Black Theme Styles */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .bg-white {
+            background-color: #000000 !important;
+        }
+        
+        .bg-gray-50 {
+            background-color: #000000 !important;
+        }
+        
+        .bg-red-50 {
+            background-color: #000000 !important;
+        }
+        
+        .bg-gray-100 {
+            background-color: #000000 !important;
+        }
+        
+        .text-gray-800 {
+            color: #ffffff !important;
+        }
+        
+        .text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        .text-gray-600 {
+            color: #ffffff !important;
+        }
+        
+        .text-gray-500 {
+            color: #ffffff !important;
+        }
+        
+        .text-gray-400 {
+            color: #ff0000 !important;
+        }
+        
+        .border-gray-200 {
+            border-color: #ff0000 !important;
+        }
+        
+        .border-gray-300 {
+            border-color: #ff0000 !important;
+        }
+        
+        .border-gray-800 {
+            border-color: #ff0000 !important;
+        }
+        
+        nav {
+            background-color: #000000 !important;
+        }
+        
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(255, 0, 0, 0.3) !important;
+        }
+        
+        .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgba(255, 0, 0, 0.4) !important;
+        }
+        
+        input, select, textarea {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ff0000 !important;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #ff0000 100%) !important;
+        }
+        
+        /* Navigation Hover Styles */
+        nav a:hover {
+            color: #ff0000 !important;
+        }
+        
+        nav a.text-gray-700 {
+            color: #ffffff !important;
+        }
+        
+        nav a.text-gray-700:hover {
+            color: #ff0000 !important;
+        }
+        
+        /* Red accents for important elements */
+        .bg-red-600 {
+            background-color: #ff0000 !important;
+        }
+        
+        .text-red-600 {
+            color: #ff0000 !important;
+        }
+        
+        .text-red-400 {
+            color: #ff0000 !important;
+        }
+        
+        .hover\:bg-red-700:hover {
+            background-color: #cc0000 !important;
+        }
+        
+        .hover\:text-red-600:hover {
+            color: #ff0000 !important;
+        }
+        
+        .hover\:text-red-400:hover {
+            color: #ff0000 !important;
+        }
+        
+        /* Black and Red variations for depth */
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, #000000, #000000) !important;
+        }
+        
+        .from-gray-50 {
+            background-color: #000000 !important;
+        }
+        
+        .to-white {
+            background-color: #000000 !important;
+        }
+        
+        .bg-gray-900 {
+            background-color: #000000 !important;
+        }
+        
+        /* Footer specific styles */
+        footer .text-gray-400 {
+            color: #ffffff !important;
+        }
+        
+        footer .border-gray-800 {
+            border-color: #ff0000 !important;
+        }
     </style>
 </head>
 <body class="scroll-smooth">
@@ -30,13 +177,14 @@
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="img/logo.jpg" alt="Lion Equipment Corporation" class="h-10 w-10 mr-3">
-                    <span class="text-2xl font-bold text-gray-800">Lion Equipment Corporation</span>
+                    <img src="img/logo.jpg" alt="Lion Equipment Company" class="h-10 w-10 mr-3 rounded-full border-2 border-red-600">
+                    <span class="text-2xl font-bold text-gray-800">Lion Equipment Company</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="text-gray-700 hover:text-red-600 transition">Home</a>
                     <a href="#services" class="text-gray-700 hover:text-red-600 transition">Services</a>
                     <a href="#crane-fleet" class="text-gray-700 hover:text-red-600 transition">Crane Fleet</a>
+                    <a href="#past-projects" class="text-gray-700 hover:text-red-600 transition">Past Projects</a>
                     <a href="#about" class="text-gray-700 hover:text-red-600 transition">About</a>
                     <a href="#contact" class="text-gray-700 hover:text-red-600 transition">Contact</a>
                 </div>
@@ -68,32 +216,15 @@
 
                         
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button id="viewDetailsBtn" class="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition">
+                        <button class="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition transform hover:scale-105">
                             View Details
                         </button>
-                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition">
-                            View Services
-                        </button>
-                    </div>
-                    <div class="mt-12 flex items-center space-x-8">
-                        <div>
-                            <h3 class="text-3xl font-bold">24/7</h3>
-                            <p class="text-red-100">Emergency Service</p>
-                        </div>
-                        <div>
-                            <h3 class="text-3xl font-bold">50+</h3>
-                            <p class="text-red-100">Years Experience</p>
-                        </div>
-                        <div>
-                            <h3 class="text-3xl font-bold">100%</h3>
-                            <p class="text-red-100">Safety Record</p>
-                        </div>
                     </div>
                 </div>
                 <div class="hidden md:block">
                     <!-- Slideshow Container -->
                     <div class="relative rounded-lg shadow-2xl overflow-hidden">
-                        <div id="slideshow" class="relative h-96">
+                        <div id="slideshow" class="relative h-full min-h-[400px]">
                             <!-- Slide 1 -->
                             <div class="slide absolute inset-0 transition-opacity duration-1000">
                                 <img src="img/Crane1.jpg" alt="Crane Service" class="w-full h-full object-cover">
@@ -292,23 +423,9 @@
         </div>
     </div>
 
-    <!-- Company History Section -->
-    <section class="py-20 bg-red-600 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-5xl font-bold text-yellow-400 mb-8">COMPANY HISTORY</h2>
-            <p class="text-xl leading-relaxed max-w-4xl mx-auto">
-                Lion Equipment Co. was officially established on April 12, 2023, as an
-                emerging provider of heavy lifting and structural support services in
-                Philippines. While relatively new in the industry, the company is built on a
-                solid foundation of experience and expertise—led by the son of the
-                founder of Jamilcres Inc., a respected name with over two decades of
-                proven success in crane rental and heavy equipment operations. Starting
-                with just a 25-ton crane, Lion Equipment Co. has grown with a strong
-                reputation for safety, reliability, and long-term client partnerships across the
-                Philippines.
-            </p>
-        </div>
-    </section>
+
+    <!-- Separator Line -->
+    <div class="w-full h-1 bg-white"></div>
 
     <!-- Mission & Vision Section -->
     <section class="py-20 bg-white">
@@ -330,22 +447,11 @@
                         <h3 class="text-2xl font-bold text-gray-800">Our Mission</h3>
                     </div>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        To provide exceptional crane and trucking services with unwavering commitment to safety, reliability, and customer satisfaction. We strive to exceed expectations through innovative solutions, professional expertise, and dedication to operational excellence in every project we undertake.
+                        The mission of Lion Equipment Co.is to deliver safe, efficient, andhigh-quality lifting and transport solutions.
+                        Inspired by the lion as a symbol of divine strength and leadership, we are committed to
+                        serving with courage, integrity, and excellence in every project we undertake
                     </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-red-600 mr-2"></i>
-                            Deliver safe and efficient heavy equipment solutions
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-red-600 mr-2"></i>
-                            Maintain the highest industry standards
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-red-600 mr-2"></i>
-                            Build lasting client relationships through trust
-                        </li>
-                    </ul>
+                    
                 </div>
 
                 <!-- Vision -->
@@ -357,22 +463,10 @@
                         <h3 class="text-2xl font-bold text-gray-800">Our Vision</h3>
                     </div>
                     <p class="text-gray-700 leading-relaxed mb-4">
-                        To be the leading provider of comprehensive crane and trucking services in the region, recognized for our innovation, safety record, and exceptional customer service. We aim to set industry benchmarks while fostering sustainable growth and contributing to the success of our clients' projects.
+                       Our vision is to deliver reliable lifting and transport solutions that contribute to infrastructure development, while cultivating
+                       long-term partnerships built on integrity, operational excellence, and performance-driven service.              
                     </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-star text-gray-600 mr-2"></i>
-                            Industry leadership through excellence
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-star text-gray-600 mr-2"></i>
-                            Continuous innovation and improvement
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-star text-gray-600 mr-2"></i>
-                            Sustainable growth and community impact
-                        </li>
-                    </ul>
+                   
                 </div>
             </div>
 
@@ -413,356 +507,393 @@
         </div>
     </section>
 
+
+
+    
+
+
     <!-- Services Section -->
     <section id="services" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Comprehensive heavy equipment solutions tailored to meet your specific needs
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">OUR SERVICES</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto text-justify">
+                    At Lion Equipment Co., we provide specialized heavy lifting and
+                    construction support services designed to meet the needs of various
+                    infrastructure and industrial projects. Our core services include:
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Crane Services -->
-                <div class="service-card bg-white rounded-xl p-8 shadow-lg">
-                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-crane text-2xl text-red-600"></i>
+            <div class="bg-white rounded-xl p-8 shadow-lg max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Service 1 -->
+                    <div class="flex items-start">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-crane text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Crane Rental Services</h3>
+                            <p class="text-gray-600">Professional crane operations for all your lifting needs</p>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Crane Services</h3>
-                    <p class="text-gray-600 mb-6">
-                        Professional crane operations for construction, industrial projects, and heavy lifting requirements.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Mobile Crane Operations
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Tower Crane Services
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Rigging & Lifting
-                        </li>
-                    </ul>
+
+                    <!-- Service 2 -->
+                    <div class="flex items-start">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-tools text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Rigging and Heavy Lifting</h3>
+                            <p class="text-gray-600">Expert rigging solutions for complex lifting operations</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="flex items-start">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-hammer text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Demolition</h3>
+                            <p class="text-gray-600">Safe and controlled demolition services</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="flex items-start">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-building text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Erection Services</h3>
+                            <p class="text-gray-600">Structural erection and assembly services</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="flex items-start">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-arrows-alt-h text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Skidding</h3>
+                            <p class="text-gray-600">Heavy equipment skidding and positioning</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="flex items-start">
+                        <div class="bg-red-100 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-bridge text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Girder Launching</h3>
+                            <p class="text-gray-600">Bridge girder launching and installation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Crane Fleet Section -->
+    <section id="crane-fleet" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-6">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-400 mb-4">LION EQUIPMENT COMPANY.</h2>
+                <div class="flex items-center justify-center mb-6">
+                    <div class="h-px bg-red-600 w-20 mr-4"></div>
+                    <p class="text-xl text-gray-400 font-medium">Crane rental • Trucking • Rigging</p>
+                    <div class="h-px bg-red-600 w-20 ml-4"></div>
+                </div>
+                <h3 class="text-4xl font-bold text-red-600 mb-4">EQUIPMENT FLEET</h3>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">State-of-the-art heavy equipment solutions for every project requirement</p>
+            </div>
+
+            <!-- Fleet Overview Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Hydraulic Cranes -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="bg-gradient-to-r from-red-600 to-red-700 p-6">
+                        <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-crane text-red-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white text-center">HYDRAULIC CRANES</h4>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Boom Trucks</span>
+                                <span class="text-red-600 font-bold">15-300 Tons</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Mobile Cranes</span>
+                                <span class="text-red-600 font-bold">20-200 Tons</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Rough Terrain</span>
+                                <span class="text-red-600 font-bold">30-150 Tons</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Trucking Services -->
-                <div class="service-card bg-white rounded-xl p-8 shadow-lg">
-                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-truck text-2xl text-red-600"></i>
+                <!-- Material Handling -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="bg-gradient-to-r from-gray-700 to-gray-800 p-6">
+                        <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-truck-loading text-gray-700 text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white text-center">MATERIAL HANDLING</h4>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Heavy Trucking</h3>
-                    <p class="text-gray-600 mb-6">
-                        Reliable transportation solutions for oversized loads and heavy equipment across all locations.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Flatbed Transport
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Oversized Load Hauling
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Equipment Logistics
-                        </li>
-                    </ul>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Forklifts</span>
+                                <span class="text-gray-700 font-bold">7-19 Tons</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Telehandlers</span>
+                                <span class="text-gray-700 font-bold">10-25 Tons</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Skidding Systems</span>
+                                <span class="text-gray-700 font-bold">Custom</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Logistics -->
-                <div class="service-card bg-white rounded-xl p-8 shadow-lg">
-                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-route text-2xl text-red-600"></i>
+                <!-- Transport Fleet -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6">
+                        <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-truck text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-white text-center">TRANSPORT FLEET</h4>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Project Logistics</h3>
-                    <p class="text-gray-600 mb-6">
-                        End-to-end project management and logistics coordination for complex operations.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Route Planning
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            Permit Management
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check text-red-600 mr-2"></i>
-                            24/7 Support
-                        </li>
-                    </ul>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Lowbed Trailers</span>
+                                <span class="text-blue-600 font-bold">Heavy Duty</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Highbed Trailers</span>
+                                <span class="text-blue-600 font-bold">Oversized</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="font-semibold text-gray-700">Articulated Trucks</span>
+                                <span class="text-blue-600 font-bold">Specialized</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Capacity Overview -->
+            <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-8 text-white">
+                <div class="text-center mb-8">
+                    <h4 class="text-3xl font-bold mb-2">FLEET CAPACITY</h4>
+                    <p class="text-red-100">Comprehensive equipment solutions for projects of any scale</p>
+                </div>
+                <div class="grid md:grid-cols-4 gap-6 text-center">
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <div class="text-4xl font-bold mb-2">25+</div>
+                        <p class="text-red-100">Total Units</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <div class="text-4xl font-bold mb-2">5000+</div>
+                        <p class="text-red-100">Ton Capacity</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <div class="text-4xl font-bold mb-2">12</div>
+                        <p class="text-red-100">Equipment Types</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                        <div class="text-4xl font-bold mb-2">100%</div>
+                        <p class="text-red-100">Certified</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Crane Fleet Section -->
-    <section id="crane-fleet" class="py-20 bg-white">
+    <!-- Separator Line -->
+    <div class="w-full h-1 bg-white"></div>
+
+    <!-- Past Projects Section -->
+    <section id="past-projects" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Crane Fleet</h2>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Past Projects</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    State-of-the-art crane equipment for every lifting requirement
+                    Showcasing our expertise in heavy lifting and construction projects across the Philippines
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Mobile Crane -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Mobile Crane" class="w-full h-48 object-cover">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-48">
+                        <img src="img/LF1.png" alt="LIFTING WORKS Project" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white text-red-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            Completed
+                        </div>
+                    </div>
                     <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <i class="fas fa-crane text-red-600 text-xl mr-2"></i>
-                            <h3 class="text-xl font-bold text-gray-800">Mobile Crane</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Versatile all-terrain crane perfect for construction sites and industrial projects.</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Capacity:</span>
-                                <span class="font-semibold">20-50 tons</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Lifting Works</h3>
+                        <p class="text-gray-600 mb-4">High-rise building construction with 25-ton crane operations for structural steel installation.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-calendar mr-2"></i>
+                                2024
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Max Height:</span>
-                                <span class="font-semibold">120 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Reach:</span>
-                                <span class="font-semibold">100 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Best For:</span>
-                                <span class="font-semibold">Construction, HVAC</span>
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-weight mr-2"></i>
+                                25 Tons
                             </div>
                         </div>
-                        <button class="view-form-btn mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                            View Form
-                        </button>
                     </div>
                 </div>
 
-                <!-- Tower Crane -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1603796836036-7069a42788a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Tower Crane" class="w-full h-48 object-cover">
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-48">
+                        <img src="img/TFC1.png" alt="Tandem Lifting Cranes Project" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            Completed
+                        </div>
+                    </div>
                     <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <i class="fas fa-building text-red-600 text-xl mr-2"></i>
-                            <h3 class="text-xl font-bold text-gray-800">Tower Crane</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">High-rise construction crane for tall building projects and skyscrapers.</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Capacity:</span>
-                                <span class="font-semibold">10-20 tons</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Tandem Lifting Cranes</h3>
+                        <p class="text-gray-600 mb-4">Bridge girder launching and installation using 50-ton mobile crane with specialized rigging.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-calendar mr-2"></i>
+                                2024
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Max Height:</span>
-                                <span class="font-semibold">800 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Reach:</span>
-                                <span class="font-semibold">230 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Best For:</span>
-                                <span class="font-semibold">High-rise buildings</span>
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-weight mr-2"></i>
+                                50 Tons
                             </div>
                         </div>
-                        <button class="view-form-btn mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                            View Form
-                        </button>
                     </div>
                 </div>
 
-                <!-- Rough Terrain Crane -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Rough Terrain Crane" class="w-full h-48 object-cover">
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-48">
+                        <img src="img/Erection.png" alt="Erection Project" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white text-green-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            Completed
+                        </div>
+                    </div>
                     <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <i class="fas fa-mountain text-red-600 text-xl mr-2"></i>
-                            <h3 class="text-xl font-bold text-gray-800">Rough Terrain Crane</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Off-road crane designed for uneven terrain and challenging job sites.</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Capacity:</span>
-                                <span class="font-semibold">30-100 tons</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Erection</h3>
+                        <p class="text-gray-600 mb-4">Heavy equipment installation and positioning using 35-ton rough terrain crane in confined spaces.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-calendar mr-2"></i>
+                                2023
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Max Height:</span>
-                                <span class="font-semibold">156 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Reach:</span>
-                                <span class="font-semibold">140 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Best For:</span>
-                                <span class="font-semibold">Off-road sites</span>
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-weight mr-2"></i>
+                                35 Tons
                             </div>
                         </div>
-                        <button class="view-form-btn mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                            View Form
-                        </button>
                     </div>
                 </div>
 
-                <!-- Crawler Crane -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Crawler Crane" class="w-full h-48 object-cover">
+                <!-- Project 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-48">
+                        <img src="img/Discharging.png" alt="Discharging from vessel to stockpile Project" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            Completed
+                        </div>
+                    </div>
                     <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <i class="fas fa-cogs text-red-600 text-xl mr-2"></i>
-                            <h3 class="text-xl font-bold text-gray-800">Crawler Crane</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Heavy-duty crane with tracks for maximum stability and lifting power.</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Capacity:</span>
-                                <span class="font-semibold">50-3000 tons</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Discharging from vessel to stockpile</h3>
+                        <p class="text-gray-600 mb-4">Multi-building construction project with 20-ton crane for material handling and structural work.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-calendar mr-2"></i>
+                                2023
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Max Height:</span>
-                                <span class="font-semibold">600 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Reach:</span>
-                                <span class="font-semibold">400 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Best For:</span>
-                                <span class="font-semibold">Heavy lifting</span>
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-weight mr-2"></i>
+                                20 Tons
                             </div>
                         </div>
-                        <button class="view-form-btn mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                            View Form
-                        </button>
                     </div>
                 </div>
 
-                <!-- Truck Crane -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Truck Crane" class="w-full h-48 object-cover">
+                <!-- Project 5 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="relative h-48">
+                        <img src="img/Demolition.png" alt="Demolition Project" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white text-orange-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            Completed
+                        </div>
+                    </div>
                     <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <i class="fas fa-truck text-red-600 text-xl mr-2"></i>
-                            <h3 class="text-xl font-bold text-gray-800">Truck Crane</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Mobile crane mounted on truck chassis for quick transportation between sites.</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Capacity:</span>
-                                <span class="font-semibold">5-40 tons</span>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Demolition</h3>
+                        <p class="text-gray-600 mb-4">Large-scale warehouse construction with 40-ton crane for steel structure erection and roof installation.</p>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-calendar mr-2"></i>
+                                2023
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Max Height:</span>
-                                <span class="font-semibold">180 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Reach:</span>
-                                <span class="font-semibold">160 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Best For:</span>
-                                <span class="font-semibold">Quick jobs</span>
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-weight mr-2"></i>
+                                40 Tons
                             </div>
                         </div>
-                        <button class="view-form-btn mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                            View Form
-                        </button>
                     </div>
                 </div>
 
-                <!-- Floating Crane -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1540206395-6880857c32f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="Floating Crane" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <div class="flex items-center mb-3">
-                            <i class="fas fa-ship text-red-600 text-xl mr-2"></i>
-                            <h3 class="text-xl font-bold text-gray-800">Floating Crane</h3>
-                        </div>
-                        <p class="text-gray-600 mb-4">Marine crane for port operations, ship loading, and offshore projects.</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Capacity:</span>
-                                <span class="font-semibold">100-5000 tons</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Max Height:</span>
-                                <span class="font-semibold">300 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Reach:</span>
-                                <span class="font-semibold">250 feet</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">Best For:</span>
-                                <span class="font-semibold">Marine work</span>
-                            </div>
-                        </div>
-                        <button class="view-form-btn mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition">
-                            View Form
-                        </button>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Fleet Specifications Summary -->
-            <div class="mt-16 bg-gray-50 rounded-xl p-8">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Fleet Specifications Summary</h3>
-                <div class="grid md:grid-cols-4 gap-6 text-center">
-                    <div>
-                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-truck-loading text-red-600 text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-2xl text-red-600 mb-1">25+</h4>
-                        <p class="text-gray-600">Total Cranes</p>
-                    </div>
-                    <div>
-                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-weight text-red-600 text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-2xl text-red-600 mb-1">5000+ tons</h4>
-                        <p class="text-gray-600">Total Capacity</p>
-                    </div>
-                    <div>
-                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-tools text-red-600 text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-2xl text-red-600 mb-1">6 Types</h4>
-                        <p class="text-gray-600">Crane Categories</p>
-                    </div>
-                    <div>
-                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-certificate text-red-600 text-2xl"></i>
-                        </div>
-                        <h4 class="font-bold text-2xl text-red-600 mb-1">100%</h4>
-                        <p class="text-gray-600">Certified Equipment</p>
-                    </div>
+            <!-- Project Statistics -->
+            <div class="mt-16 grid md:grid-cols-4 gap-6 text-center">
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-red-600 mb-2">50+</div>
+                    <p class="text-gray-600">Projects Completed</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-red-600 mb-2">100%</div>
+                    <p class="text-gray-600">On-Time Delivery</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-red-600 mb-2">0</div>
+                    <p class="text-gray-600">Safety Incidents</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="text-3xl font-bold text-red-600 mb-2">5.0</div>
+                    <p class="text-gray-600">Client Rating</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Separator Line -->
+    <div class="w-full h-1 bg-white"></div>
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1603796836036-7069a42788a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Team" class="rounded-lg shadow-xl">
+                    <img src="img/crane2.jpg" alt="Team" class="rounded-lg shadow-xl">
                 </div>
                 <div>
-                    <h2 class="text-4xl font-bold text-gray-800 mb-6">About Elite Crane & Trucking</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        With over 50 years of combined experience in the heavy equipment industry, Elite Crane & Trucking has established itself as a trusted partner for construction companies, industrial facilities, and project managers across the region.
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">About Lion Equipment Company</h2>
+                    <p class="text-lg text-gray-600 mb-6 text-justify">
+                        <strong class="text-red-600">Building Tomorrow's Infrastructure Today</strong> - Lion Equipment Co. stands at the forefront of heavy lifting and structural support services in the Philippines. Founded on April 12, 2023, we combine innovative solutions with time-tested expertise to deliver exceptional results for every project.
                     </p>
-                    <p class="text-lg text-gray-600 mb-8">
-                        Our commitment to safety, reliability, and excellence has earned us a reputation for delivering exceptional results on projects of all sizes and complexity.
+                    <p class="text-lg text-gray-600 mb-8 text-justify">
+                        Our foundation is built on decades of industry excellence, led by the vision of the founder's son from Jamilcres Inc. - a respected name with over 20 years of proven success. From our humble beginnings with a single 25-ton crane, we've evolved into a trusted partner known for unwavering commitment to <strong class="text-red-600">safety, reliability, and long-term client success</strong> across the Philippines.
                     </p>
                     <div class="grid grid-cols-2 gap-6">
                         <div class="flex items-center">
@@ -771,6 +902,8 @@
                                 <h4 class="font-semibold text-gray-800">Licensed & Insured</h4>
                                 <p class="text-gray-600">Fully certified operations</p>
                             </div>
+
+                            
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-shield-alt text-red-600 text-2xl mr-4"></i>
@@ -799,6 +932,7 @@
         </div>
     </section>
 
+    
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
@@ -867,9 +1001,9 @@
                             <i class="fas fa-map-marker-alt text-red-600 text-2xl mr-4"></i>
                             <h3 class="text-xl font-semibold text-gray-800">Location</h3>
                         </div>
-                        <p class="text-gray-600">123 Industrial Drive</p>
-                        <p class="text-gray-600">Manufacturing City, MC 12345</p>
-                        <p class="text-gray-600">Serving all surrounding areas</p>
+                        <p class="text-gray-600">640 Tatalon St.</p>
+                        <p class="text-gray-600">Brgy. Ugong Valenzuela City.</p>
+                   
                     </div>
 
                     <div class="bg-white rounded-xl p-8 shadow-lg">
@@ -892,8 +1026,8 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <img src="img/logo.jpg" alt="Lion Equipment Corporation" class="h-8 w-8 mr-2">
-                        <span class="text-xl font-bold">Lion Equipment Corporation</span>
+                        <img src="img/logo.jpg" alt="Lion Equipment Company" class="h-8 w-8 mr-2 rounded-full border-2 border-red-600">
+                        <span class="text-xl font-bold">Lion Equipment Company</span>
                     </div>
                     <p class="text-gray-400">
                         Your trusted partner for professional crane and trucking services.
@@ -903,20 +1037,20 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Services</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-red-400 transition">Crane Operations</a></li>
-                        <li><a href="#" class="hover:text-red-400 transition">Heavy Transport</a></li>
-                        <li><a href="#" class="hover:text-red-400 transition">Project Logistics</a></li>
-                        <li><a href="#" class="hover:text-red-400 transition">Emergency Services</a></li>
+                        <li><a href="#services" class="hover:text-red-400 transition">Crane Operations</a></li>
+                        <li><a href="#services" class="hover:text-red-400 transition">Heavy Transport</a></li>
+                        <li><a href="#services" class="hover:text-red-400 transition">Project Logistics</a></li>
+                        <li><a href="#services" class="hover:text-red-400 transition">Emergency Services</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Company</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-red-400 transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-red-400 transition">Safety</a></li>
-                        <li><a href="#" class="hover:text-red-400 transition">Careers</a></li>
-                        <li><a href="#" class="hover:text-red-400 transition">Contact</a></li>
+                        <li><a href="#about" class="hover:text-red-400 transition">About Us</a></li>
+                        <li><a href="#past-projects" class="hover:text-red-400 transition">Safety</a></li>
+                        <li><a href="#contact" class="hover:text-red-400 transition">Careers</a></li>
+                        <li><a href="#contact" class="hover:text-red-400 transition">Contact</a></li>
                     </ul>
                 </div>
 
@@ -943,7 +1077,7 @@
             </div>
 
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2026 Lion Equipment Corporation. All rights reserved.</p>
+                <p>&copy; 2026 Lion Equipment Company. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -959,11 +1093,11 @@
                             <a href="#home" class="block text-gray-700 hover:text-red-600 transition py-2">Home</a>
                             <a href="#services" class="block text-gray-700 hover:text-red-600 transition py-2">Services</a>
                             <a href="#crane-fleet" class="block text-gray-700 hover:text-red-600 transition py-2">Crane Fleet</a>
+                            <a href="#past-projects" class="block text-gray-700 hover:text-red-600 transition py-2">Past Projects</a>
                             <a href="#about" class="block text-gray-700 hover:text-red-600 transition py-2">About</a>
                             <a href="#contact" class="block text-gray-700 hover:text-red-600 transition py-2">Contact</a>
                 </div>
             `;
-            
             mobileMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
                 document.querySelector('nav').appendChild(mobileMenu);
