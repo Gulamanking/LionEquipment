@@ -139,6 +139,509 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Login Modal functionality
+    const openLoginModal = document.getElementById('openLoginModal');
+    const loginModal = document.getElementById('loginModal');
+    const closeLoginModal = document.getElementById('closeLoginModal');
+    const loginModalForm = document.getElementById('loginModalForm');
+    const toggleModalPassword = document.getElementById('toggleModalPassword');
+    const modalPasswordInput = document.getElementById('modalPassword');
+
+    // Open login modal
+    if (openLoginModal) {
+        openLoginModal.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.classList.remove('hidden');
+            loginModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close login modal
+    function closeLoginModalFunction() {
+        loginModal.classList.add('hidden');
+        loginModal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    if (closeLoginModal) {
+        closeLoginModal.addEventListener('click', closeLoginModalFunction);
+    }
+
+    // Close modal when clicking outside
+    if (loginModal) {
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                closeLoginModalFunction();
+            }
+        });
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !loginModal.classList.contains('hidden')) {
+            closeLoginModalFunction();
+        }
+    });
+
+    // Toggle password visibility in modal
+    if (toggleModalPassword) {
+        toggleModalPassword.addEventListener('click', function() {
+            const type = modalPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            modalPasswordInput.setAttribute('type', type);
+            
+            // Toggle eye icon
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+    }
+
+    // Handle modal login form submission
+    if (loginModalForm) {
+        loginModalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('modalEmail').value;
+            const password = document.getElementById('modalPassword').value;
+            const remember = document.getElementById('modalRemember').checked;
+
+            // Basic validation
+            if (!email || !password) {
+                showLoginError('Please fill in all fields');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showLoginError('Please enter a valid email address');
+                return;
+            }
+
+            // Simulate login process
+            simulateModalLogin(email, password, remember);
+        });
+    }
+
+    // Simulate modal login function with PHP API connection
+    async function simulateModalLogin(email, password, remember) {
+        // Show loading state
+        const submitButton = loginModalForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Signing in...';
+        submitButton.disabled = true;
+
+        try {
+            // Call PHP API
+            const response = await fetch('api/auth.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'login',
+                    email: email,
+                    password: password,
+                    remember: remember ? 'true' : 'false'
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Success
+                showLoginSuccess();
+                
+                // Store session info in localStorage (for demo purposes)
+                if (remember) {
+                    localStorage.setItem('rememberedEmail', email);
+                    localStorage.setItem('loginTime', new Date().toISOString());
+                } else {
+                    sessionStorage.setItem('currentUser', email);
+                }
+
+                // Store user info
+                localStorage.setItem('currentUser', JSON.stringify(result.user));
+
+                // Close modal and show success after delay
+                setTimeout(() => {
+                    closeLoginModalFunction();
+                    showLoginSuccessMessage();
+                    
+                    // Update UI to show logged in state
+                    updateLoginUI(result.user);
+                }, 1000);
+            } else {
+                // Error
+                showLoginError(result.message);
+                
+                // Reset button
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            }
+        } catch (error) {
+            console.error('Login Error:', error);
+            showLoginError('Network error. Please try again.');
+            
+            // Reset button
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+        }
+    }
+
+    // Update UI when user is logged in
+    function updateLoginUI(user) {
+        // Update login link to show user info
+        const loginLink = document.getElementById('openLoginModal');
+        if (loginLink) {
+            loginLink.innerHTML = `
+                <i class="fas fa-user mr-1"></i>
+                ${user.name}
+                <a href="#" id="logoutLink" class="ml-2 text-gray-500 hover:text-red-600 transition">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            `;
+            
+            // Add logout functionality
+            const logoutLink = document.getElementById('logoutLink');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    await handleLogout();
+                });
+            }
+        }
+    }
+
+    // Handle logout
+    async function handleLogout() {
+        try {
+            const response = await fetch('api/auth.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'logout'
+                })
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+                // Clear local storage
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('rememberedEmail');
+                sessionStorage.removeItem('currentUser');
+                
+                // Show success message
+                showLoginSuccess('Logged out successfully!');
+                
+                // Reload page to reset UI
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                showLoginError('Logout failed');
+            }
+        } catch (error) {
+            console.error('Logout Error:', error);
+            showLoginError('Network error during logout');
+        }
+    }
+
+    // Check login status on page load
+    async function checkLoginStatus() {
+        try {
+            const response = await fetch('api/auth.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    action: 'check'
+                })
+            });
+
+            const result = await response.json();
+            
+            if (result.loggedIn && result.user) {
+                // User is logged in, update UI
+                updateLoginUI(result.user);
+            }
+        } catch (error) {
+            console.log('Could not check login status:', error);
+        }
+    }
+
+    // Show login success message
+    function showLoginSuccess() {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        successDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Login successful!';
+        document.body.appendChild(successDiv);
+        
+        setTimeout(() => {
+            successDiv.remove();
+        }, 3000);
+    }
+
+    // Show login error message
+    function showLoginError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        errorDiv.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>' + message;
+        document.body.appendChild(errorDiv);
+        
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 3000);
+    }
+
+    // Show login success message
+    function showLoginSuccess(message) {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        successDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i>' + message;
+        document.body.appendChild(successDiv);
+        
+        setTimeout(() => {
+            successDiv.remove();
+        }, 3000);
+    }
+
+    // Show registration error message
+    function showRegistrationError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>' + message;
+        document.body.appendChild(errorDiv);
+        
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 4000);
+    }
+
+    // Show registration success message
+    function showRegistrationSuccess(message) {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        successDiv.innerHTML = '<i class="fas fa-user-plus mr-2"></i>' + message;
+        document.body.appendChild(successDiv);
+        
+        setTimeout(() => {
+            successDiv.remove();
+        }, 4000);
+    }
+
+    // Show info message (for general notifications)
+    function showInfoMessage(message) {
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'fixed top-4 right-4 bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        infoDiv.innerHTML = '<i class="fas fa-info-circle mr-2"></i>' + message;
+        document.body.appendChild(infoDiv);
+        
+        setTimeout(() => {
+            infoDiv.remove();
+        }, 3000);
+    }
+
+    // Show warning message (for validation warnings)
+    function showWarningMessage(message) {
+        const warningDiv = document.createElement('div');
+        warningDiv.className = 'fixed top-4 right-4 bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+        warningDiv.innerHTML = '<i class="fas fa-exclamation-triangle mr-2"></i>' + message;
+        document.body.appendChild(warningDiv);
+        
+        setTimeout(() => {
+            warningDiv.remove();
+        }, 3000);
+    }
+
+    // Show login success message after modal closes
+    function showLoginSuccessMessage() {
+        showLoginSuccess('Welcome back! You are now logged in.');
+    }
+
+    // Registration form validation and submission
+    const registerModalForm = document.getElementById('registerModalForm');
+    if (registerModalForm) {
+        registerModalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const fullName = document.getElementById('regFullName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const company = document.getElementById('regCompany').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const terms = document.getElementById('regTerms').checked;
+            
+            // Validation
+            if (!fullName) {
+                showRegistrationError('Full name is required');
+                return;
+            }
+            
+            if (fullName.length < 2) {
+                showRegistrationError('Full name must be at least 2 characters');
+                return;
+            }
+            
+            if (!email) {
+                showRegistrationError('Email address is required');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showRegistrationError('Please enter a valid email address');
+                return;
+            }
+            
+            if (!phone) {
+                showRegistrationError('Phone number is required');
+                return;
+            }
+            
+            if (phone.length < 10) {
+                showRegistrationError('Please enter a valid phone number');
+                return;
+            }
+            
+            if (!password) {
+                showRegistrationError('Password is required');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showRegistrationError('Password must be at least 8 characters long');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showRegistrationError('Passwords do not match');
+                return;
+            }
+            
+            if (!terms) {
+                showRegistrationError('You must agree to the Terms and Conditions');
+                return;
+            }
+            
+            // Show loading state
+            const submitButton = registerModalForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating Account...';
+            submitButton.disabled = true;
+            
+            // Submit form
+            const formData = new FormData(registerModalForm);
+            
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Check if registration was successful by looking for redirect or success indicators
+                if (data.includes('Account created successfully') || data.includes('index.php')) {
+                    showRegistrationSuccess('Account created successfully! Your account is pending approval.');
+                    // Reset form
+                    registerModalForm.reset();
+                    // Close modal after delay
+                    setTimeout(() => {
+                        const registerModal = document.getElementById('registerModal');
+                        if (registerModal) {
+                            registerModal.classList.add('hidden');
+                            registerModal.classList.remove('flex');
+                        }
+                        // Open login modal
+                        const loginModal = document.getElementById('loginModal');
+                        if (loginModal) {
+                            loginModal.classList.remove('hidden');
+                            loginModal.classList.add('flex');
+                        }
+                    }, 2000);
+                } else {
+                    // Look for error messages in response
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const errorElements = doc.querySelectorAll('.text-red-700 li');
+                    
+                    if (errorElements.length > 0) {
+                        const errorText = Array.from(errorElements).map(el => el.textContent).join('; ');
+                        showRegistrationError(errorText);
+                    } else {
+                        showRegistrationError('Registration failed. Please try again.');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Registration Error:', error);
+                showRegistrationError('Network error. Please try again.');
+            })
+            .finally(() => {
+                // Reset button
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
+        });
+    }
+
+    // Registration modal form field validation on input
+    const regPassword = document.getElementById('regPassword');
+    const regConfirmPassword = document.getElementById('regConfirmPassword');
+    
+    if (regPassword && regConfirmPassword) {
+        regConfirmPassword.addEventListener('input', function() {
+            if (this.value && this.value !== regPassword.value) {
+                this.setCustomValidity('Passwords do not match');
+                showWarningMessage('Passwords do not match');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    }
+
+    // Check if user was remembered and pre-fill modal
+    function checkRememberedUserForModal() {
+        const rememberedEmail = localStorage.getItem('rememberedEmail');
+        if (rememberedEmail) {
+            const modalEmailInput = document.getElementById('modalEmail');
+            if (modalEmailInput) {
+                modalEmailInput.value = rememberedEmail;
+                document.getElementById('modalRemember').checked = true;
+            }
+        }
+    }
+
+    // Handle social login buttons in modal
+    document.querySelectorAll('#loginModal button').forEach(button => {
+        if (button.textContent.includes('Google') || button.textContent.includes('Microsoft')) {
+            button.addEventListener('click', function() {
+                showLoginError('Social login not implemented yet');
+            });
+        }
+    });
+
+    // Handle forgot password link in modal
+    document.querySelectorAll('#loginModal a[href="#"]').forEach(link => {
+        if (link.textContent.includes('Forgot password')) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLoginError('Password reset feature coming soon');
+            });
+        }
+        // Registration is now enabled - removed coming soon message
+    });
+
+    // Initialize modal functionality
+    checkRememberedUserForModal();
+    checkLoginStatus();
+
     // Modal functionality
     const viewDetailsBtn = document.getElementById('viewDetailsBtn');
     const detailsModal = document.getElementById('detailsModal');

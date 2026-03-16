@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,6 +191,9 @@
                     <a href="#past-projects" class="text-gray-700 hover:text-red-600 transition">Past Projects</a>
                     <a href="#about" class="text-gray-700 hover:text-red-600 transition">About</a>
                     <a href="#contact" class="text-gray-700 hover:text-red-600 transition">Contact</a>
+                    <a href="#" id="openLoginModal" class="text-red-600 hover:text-red-700 font-semibold transition">
+                        <i class="fas fa-sign-in-alt mr-1"></i>Login
+                    </a>
                 </div>
                 <button class="md:hidden">
                     <i class="fas fa-bars text-2xl text-gray-700"></i>
@@ -985,6 +991,354 @@
         </div>
     </section>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="img/logo.jpg" alt="Lion Equipment Company" class="h-10 w-10 mr-3 rounded-full border-2 border-red-600">
+                    <h2 class="text-2xl font-bold text-gray-800">Sign In</h2>
+                </div>
+                <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6">
+                <p class="text-gray-600 mb-6">Sign in to your Lion Equipment account</p>
+                
+                <!-- Login Form -->
+                <form id="loginModalForm" action="login.php" method="POST" class="space-y-6">
+                    <?php
+                    if (isset($_SESSION['login_errors']) && !empty($_SESSION['login_errors'])) {
+                        echo '<div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">';
+                        echo '<div class="flex items-center mb-2">';
+                        echo '<i class="fas fa-exclamation-triangle text-red-600 mr-2"></i>';
+                        echo '<span class="text-red-800 font-semibold">Login Error</span>';
+                        echo '</div>';
+                        echo '<ul class="text-red-700 text-sm space-y-1">';
+                        foreach ($_SESSION['login_errors'] as $error) {
+                            echo '<li>• ' . htmlspecialchars($error) . '</li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                        unset($_SESSION['login_errors']);
+                    }
+                    
+                    if (isset($_SESSION['login_success'])) {
+                        echo '<div class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">';
+                        echo '<div class="flex items-center">';
+                        echo '<i class="fas fa-check-circle text-green-600 mr-2"></i>';
+                        echo '<span class="text-green-800">' . htmlspecialchars($_SESSION['login_success']) . '</span>';
+                        echo '</div>';
+                        echo '</div>';
+                        unset($_SESSION['login_success']);
+                    }
+                    ?>
+                    <!-- Email Field -->
+                    <div>
+                        <label for="modalEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-envelope mr-2 text-red-600"></i>Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            id="modalEmail" 
+                            name="email" 
+                            required
+                            value="<?php echo isset($_SESSION['login_email']) ? htmlspecialchars($_SESSION['login_email']) : ''; ?>"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                            placeholder="admin@lionequipment.com"
+                        >
+                        <?php unset($_SESSION['login_email']); ?>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="modalPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-lock mr-2 text-red-600"></i>Password
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="password" 
+                                id="modalPassword" 
+                                name="password" 
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                placeholder="Enter your password"
+                            >
+                            <button 
+                                type="button" 
+                                id="toggleModalPassword"
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-600 transition"
+                            >
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="modalRemember" 
+                                name="remember" 
+                                class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                            >
+                            <label for="modalRemember" class="ml-2 text-sm text-gray-600">Remember me</label>
+                        </div>
+                        <a href="#" class="text-sm text-red-600 hover:text-red-700 transition">Forgot password?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit" 
+                        class="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-700 transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
+                    >
+                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative my-6">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <!-- Social Login -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        <i class="fab fa-google text-red-500 mr-2"></i>
+                        <span class="text-sm font-medium">Google</span>
+                    </button>
+                    <button class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        <i class="fab fa-microsoft text-blue-600 mr-2"></i>
+                        <span class="text-sm font-medium">Microsoft</span>
+                    </button>
+                </div>
+
+                <!-- Sign Up Link -->
+                <div class="text-center mt-6">
+                    <p class="text-gray-600">
+                        Don't have an account? 
+                        <a href="#" id="openRegisterModal" class="text-red-600 hover:text-red-700 font-semibold transition">Sign up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="img/logo.jpg" alt="Lion Equipment Company" class="h-10 w-10 mr-3 rounded-full border-2 border-red-600">
+                    <h2 class="text-2xl font-bold text-gray-800">Create Account</h2>
+                </div>
+                <button id="closeRegisterModal" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6">
+                <p class="text-gray-600 mb-6">Join Lion Equipment Company</p>
+                
+                <!-- Registration Form -->
+                <form id="registerModalForm" action="register.php" method="POST" class="space-y-6">
+                    <?php
+                    if (isset($_SESSION['register_errors']) && !empty($_SESSION['register_errors'])) {
+                        echo '<div class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">';
+                        echo '<div class="flex items-center mb-2">';
+                        echo '<i class="fas fa-exclamation-triangle text-red-600 mr-2"></i>';
+                        echo '<span class="text-red-800 font-semibold">Registration Error</span>';
+                        echo '</div>';
+                        echo '<ul class="text-red-700 text-sm space-y-1">';
+                        foreach ($_SESSION['register_errors'] as $error) {
+                            echo '<li>• ' . htmlspecialchars($error) . '</li>';
+                        }
+                        echo '</ul>';
+                        echo '</div>';
+                        unset($_SESSION['register_errors']);
+                    }
+                    
+                    if (isset($_SESSION['register_success'])) {
+                        echo '<div class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">';
+                        echo '<div class="flex items-center">';
+                        echo '<i class="fas fa-check-circle text-green-600 mr-2"></i>';
+                        echo '<span class="text-green-800">' . htmlspecialchars($_SESSION['register_success']) . '</span>';
+                        echo '</div>';
+                        echo '</div>';
+                        unset($_SESSION['register_success']);
+                    }
+                    
+                    // Get form data from session if available
+                    $form_data = $_SESSION['register_form_data'] ?? [];
+                    unset($_SESSION['register_form_data']);
+                    ?>
+
+                    <!-- Form Fields in Landscape Layout -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="regFullName" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-user mr-2 text-red-600"></i>Full Name
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="regFullName" 
+                                    name="full_name" 
+                                    required
+                                    value="<?php echo htmlspecialchars($form_data['full_name'] ?? ''); ?>"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                    placeholder="John Doe"
+                                >
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="regEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-envelope mr-2 text-red-600"></i>Email Address
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="regEmail" 
+                                    name="email" 
+                                    required
+                                    value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                    placeholder="john@example.com"
+                                >
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="regPhone" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-phone mr-2 text-red-600"></i>Phone Number
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="regPhone" 
+                                    name="phone" 
+                                    required
+                                    value="<?php echo htmlspecialchars($form_data['phone'] ?? ''); ?>"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                    placeholder="+63 912 345 6789"
+                                >
+                            </div>
+
+                            <!-- Company (Optional) -->
+                            <div>
+                                <label for="regCompany" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-building mr-2 text-red-600"></i>Company (Optional)
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="regCompany" 
+                                    name="company"
+                                    value="<?php echo htmlspecialchars($form_data['company'] ?? ''); ?>"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                    placeholder="Your company name"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-6">
+                            <!-- Password -->
+                            <div>
+                                <label for="regPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-lock mr-2 text-red-600"></i>Password
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="password" 
+                                        id="regPassword" 
+                                        name="password" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                        placeholder="Min. 8 characters"
+                                    >
+                                    <button 
+                                        type="button" 
+                                        id="toggleRegPassword"
+                                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-600 transition"
+                                    >
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div>
+                                <label for="regConfirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                                    <i class="fas fa-lock mr-2 text-red-600"></i>Confirm Password
+                                </label>
+                                <div class="relative">
+                                    <input 
+                                        type="password" 
+                                        id="regConfirmPassword" 
+                                        name="confirm_password" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-200"
+                                        placeholder="Confirm your password"
+                                    >
+                                    <button 
+                                        type="button" 
+                                        id="toggleRegConfirmPassword"
+                                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-600 transition"
+                                    >
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="flex items-center">
+                                <input 
+                                    type="checkbox" 
+                                    id="regTerms" 
+                                    name="terms" 
+                                    required
+                                    class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                                >
+                                <label for="regTerms" class="ml-2 text-sm text-gray-600">
+                                    I agree to the <a href="#" class="text-red-600 hover:text-red-700">Terms and Conditions</a>
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button 
+                                type="submit" 
+                                class="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-700 transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2"
+                            >
+                                <i class="fas fa-user-plus mr-2"></i>Create Account
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Login Link -->
+                    <div class="text-center mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-gray-600">
+                            Already have an account? 
+                            <a href="#" id="openLoginFromRegister" class="text-red-600 hover:text-red-700 font-semibold transition">Sign In</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-white text-gray-800 py-12">
         <div class="container mx-auto px-6">
@@ -1044,6 +1398,125 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Auto-open registration modal if there are errors or success messages
+        <?php if (isset($_SESSION['register_errors']) || isset($_SESSION['register_success'])): ?>
+        document.addEventListener('DOMContentLoaded', function() {
+            const registerModal = document.getElementById('registerModal');
+            if (registerModal) {
+                registerModal.classList.remove('hidden');
+                registerModal.classList.add('flex');
+            }
+        });
+        <?php endif; ?>
+
+        // Login Modal functionality
+        const loginModal = document.getElementById('loginModal');
+        const openLoginModal = document.getElementById('openLoginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+
+        if (openLoginModal) {
+            openLoginModal.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginModal.classList.remove('hidden');
+                loginModal.classList.add('flex');
+            });
+        }
+
+        if (closeLoginModal) {
+            closeLoginModal.addEventListener('click', () => {
+                loginModal.classList.add('hidden');
+                loginModal.classList.remove('flex');
+            });
+        }
+
+        // Registration Modal functionality
+        const registerModal = document.getElementById('registerModal');
+        const openRegisterModal = document.getElementById('openRegisterModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const openLoginFromRegister = document.getElementById('openLoginFromRegister');
+
+        if (openRegisterModal) {
+            openRegisterModal.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerModal.classList.remove('hidden');
+                registerModal.classList.add('flex');
+                // Close login modal if open
+                loginModal.classList.add('hidden');
+                loginModal.classList.remove('flex');
+            });
+        }
+
+        if (closeRegisterModal) {
+            closeRegisterModal.addEventListener('click', () => {
+                registerModal.classList.add('hidden');
+                registerModal.classList.remove('flex');
+            });
+        }
+
+        if (openLoginFromRegister) {
+            openLoginFromRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerModal.classList.add('hidden');
+                registerModal.classList.remove('flex');
+                loginModal.classList.remove('hidden');
+                loginModal.classList.add('flex');
+            });
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.add('hidden');
+                loginModal.classList.remove('flex');
+            }
+            if (e.target === registerModal) {
+                registerModal.classList.add('hidden');
+                registerModal.classList.remove('flex');
+            }
+        });
+
+        // Password visibility toggle for login
+        const toggleModalPassword = document.getElementById('toggleModalPassword');
+        const modalPassword = document.getElementById('modalPassword');
+
+        if (toggleModalPassword && modalPassword) {
+            toggleModalPassword.addEventListener('click', () => {
+                const type = modalPassword.type === 'password' ? 'text' : 'password';
+                modalPassword.type = type;
+                const icon = toggleModalPassword.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        // Password visibility toggle for registration
+        const toggleRegPassword = document.getElementById('toggleRegPassword');
+        const regPassword = document.getElementById('regPassword');
+        const toggleRegConfirmPassword = document.getElementById('toggleRegConfirmPassword');
+        const regConfirmPassword = document.getElementById('regConfirmPassword');
+
+        if (toggleRegPassword && regPassword) {
+            toggleRegPassword.addEventListener('click', () => {
+                const type = regPassword.type === 'password' ? 'text' : 'password';
+                regPassword.type = type;
+                const icon = toggleRegPassword.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        }
+
+        if (toggleRegConfirmPassword && regConfirmPassword) {
+            toggleRegConfirmPassword.addEventListener('click', () => {
+                const type = regConfirmPassword.type === 'password' ? 'text' : 'password';
+                regConfirmPassword.type = type;
+                const icon = toggleRegConfirmPassword.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        }
+    </script>
 
 </body>
 </html>
