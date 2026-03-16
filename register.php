@@ -75,13 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Insert new user
             $stmt = $pdo->prepare("
                 INSERT INTO users (full_name, email, phone, company, password, created_at, status) 
-                VALUES (?, ?, ?, ?, ?, NOW(), 'pending')
+                VALUES (?, ?, ?, ?, ?, NOW(), 'active')
             ");
             
             $result = $stmt->execute([$full_name, $email, $phone, $company, $hashed_password]);
             
             if ($result) {
-                $_SESSION['register_success'] = "Account created successfully! Your account is pending approval. You will be notified once approved.";
+                $_SESSION['register_success'] = "Account created successfully! Welcome to Lion Equipment Company. You can now log in.";
                 
                 // Redirect to index page to show success in modal
                 header("Location: index.php");

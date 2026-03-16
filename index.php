@@ -363,7 +363,7 @@ session_start();
                                 <h4 class="text-lg font-semibold text-gray-800">How Our Service Works</h4>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Contact us today for professional crane and trucking services. Our team is available 24/7 to handle your heavy equipment needs with precision and safety.
+                                Contact us today for professional crane and trucking services. Our team is ready to assist with your heavy equipment needs.
                             </p>
                             <div class="grid md:grid-cols-3 gap-4 text-center">
                                 <div class="bg-white p-4 rounded-lg border border-gray-200">

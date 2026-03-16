@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Fix - Lion Equipment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .success { color: green; }
+        .error { color: red; }
+        table { border: 1px solid #ccc; width: 100%; margin-top: 20px; }
+        th, td { padding: 10px; text-align: left; }
+        th { background: #f0f0f0; }
+        button { background: #dc2626; color: white; padding: 10px 20px; border: none; cursor: pointer; margin: 10px 0; }
+        button:hover { background: #b91c1c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Database Column Fix</h1>
+        
+        <h2>Option 1: Quick Fix (Recommended)</h2>
+        <p>Click the button below to add the missing 'company' column to the users table:</p>
+        <form action="quick_fix.php" method="post">
+            <button type="submit">Add Company Column</button>
+        </form>
+        
+        <h2>Option 2: Full Database Setup</h2>
+        <p>Run the complete database setup script:</p>
+        <form action="setup_database.php" method="post">
+            <button type="submit">Run Full Setup</button>
+        </form>
+        
+        <h2>Option 3: Manual SQL</h2>
+        <p>Copy and paste this SQL into your database management tool:</p>
+        <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+ALTER TABLE `users` ADD COLUMN IF NOT EXISTS `company` varchar(255) DEFAULT NULL AFTER `phone`;
+        </pre>
+        
+        <p><a href="../index.php">← Back to Website</a></p>
+    </div>
+</body>
+</html>
